@@ -9,8 +9,8 @@ class Contributor(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='project')
     role = models.ForeignKey(Role, related_name='role')
 
-    def __str__(self):
-        return f"{self.user} - {self.role} du projet {self.project}"
-
     class Meta:
         unique_together = ('user', 'project')
+
+    def __str__(self):
+        return f"{self.user} - {self.role} du projet {self.project}"

@@ -8,13 +8,19 @@ class Issue(models.Model):
     tag = models.CharField()
     priority = models.CharField()
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    status = models.CharField
-    author_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    assignee_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    status = models.CharField()
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    assignee = models.ForeignKey(CustomUser)
     created_time = models.DateTimeField
+
+    def __str__(self):
+        return f"{self.project} - {self.title}"
 
 
 class Comment(models.Model):
     description = models.CharField(max_length=1024)
-    author_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.issue} - {self.pk}"
