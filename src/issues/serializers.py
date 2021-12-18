@@ -3,7 +3,13 @@ from rest_framework.serializers import ModelSerializer
 from issues.models import Issue, Comment
  
  
-class IssueSerializer(ModelSerializer):
+class IssueListSerializer(ModelSerializer):
+    class Meta:
+        model = Issue
+        fields = ['id', 'title', 'priority', 'project', 'status']
+        
+        
+class IssueDetailSerializer(ModelSerializer):
     class Meta:
         model = Issue
         fields = [

@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.project_contributors(), name='project_contributors'),
-    path('<int:id>/', views.delete_contributor(), name='delete_contributor'),
+    path('', views.ContributorViewSet.as_view({'get': 'list'}), name='project_contributors'),
+    path('<int:contributor_id>/', views.ContributorViewSet.as_view({'get': 'list'}), name='delete_contributor'),
 ]

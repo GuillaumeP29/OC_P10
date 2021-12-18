@@ -3,13 +3,25 @@ from rest_framework.serializers import ModelSerializer
 from core.models import CustomUser, Project, Permission, Role, ProjectType
  
  
-class CustomUserSerializer(ModelSerializer):
+class UserListSerializer(ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'first_name', 'last_name']
+ 
+ 
+class UserDetailSerializer(ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['id', 'first_name', 'last_name', 'email']
 
 
-class ProjectSerializer(ModelSerializer):
+class ProjectListSerializer(ModelSerializer):
+    class Meta:
+        model = Project
+        fields = ['id', 'title', 'type']
+
+
+class ProjectDetailSerializer(ModelSerializer):
     class Meta:
         model = Project
         fields = ['id', 'title', 'description', 'type']

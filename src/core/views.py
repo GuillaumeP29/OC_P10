@@ -3,6 +3,12 @@ from ProjectManager.settings import LOGIN_REDIRECT_URL
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.views.generic import View
+from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.response import Response
+ 
+from core.models import CustomUser, Project, Permission, Role, ProjectType
+from core.serializers import UserListSerializer, UserDetailSerializer, ProjectDetailSerializer, ProjectListSerializer, PermissionSerializer, RoleSerializer, ProjectTypeSerializer
 # from django.http import HttpResponse
 
 
@@ -71,3 +77,49 @@ def sign_up_page(request):
             login(request, user)
             return redirect(LOGIN_REDIRECT_URL)
     return render(request, "core/sign_up.html", context={'form': form})
+
+
+class UserViewSet(ModelViewSet):
+    serializer_class = UserListSerializer
+    detail_serializer_class = UserDetailSerializer
+
+    def get_queryset(self):
+        return CustomUser.objects.all()
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return self.detail_serializer_class
+        return super().get_serializer_class()
+
+class ProjectViewSet(ModelViewSet):
+    serializer_class = ProjectListSerializer
+    detail_serializer_class = ProjectDetailSerializer
+
+    def get_queryset(self):
+        return Project.objects.all()
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return self.detail_serializer_class
+        return super().get_serializer_class()
+
+
+class PermissionAPIView(APIView):
+    def get(self, *args, **kwargs):
+        permissions = Permission.objects.all()
+        serializer = PermissionSerializer(permissions, many=True)
+        return Response(serializer.data)
+
+
+class RoleAPIView(APIView):
+    def get(self, *args, **kwargs):
+        roles = Role.objects.all()
+        serializer = RoleSerializer(roles, many=True)
+        return Response(serializer.data)
+
+
+class ProjectTypeAPIView(APIView):
+    def get(self, *args, **kwargs):
+        project_types = ProjectType.objects.all()
+        serializer = ProjectTypeSerializer(project_types, many=True)
+        return Response(serializer.data)

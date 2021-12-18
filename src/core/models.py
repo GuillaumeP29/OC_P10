@@ -19,6 +19,7 @@ class Role(models.Model):
 
 
 class ProjectType(models.Model):
+    name = models.CharField(max_length=32, unique=True)
 
     def __str__(self):
         return self.name
@@ -33,7 +34,7 @@ class CustomUser(AbstractUser):
 class Project(models.Model):
     title = models.CharField(max_length=128)
     description = models.CharField(max_length=2048, blank=True)
-    type = models.CharField(ProjectType, related_name='project_type')
+    type = models.ForeignKey(ProjectType, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

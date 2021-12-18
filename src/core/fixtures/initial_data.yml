@@ -27,20 +27,16 @@
 - model: core.project_type
   pk: 1
   fields:
-    name: product modification
+    name: backend
 - model: core.project_type
   pk: 2
   fields:
-    name: product development
+    name: frontend
 - model: core.project_type
   pk: 3
   fields:
-    name: organisation
+    name: IOS
 - model: core.project_type
   pk: 4
   fields:
-    name: communication
-- model: core.project_type
-  pk: 5
-  fields:
-    name: innovation
+    name: android
