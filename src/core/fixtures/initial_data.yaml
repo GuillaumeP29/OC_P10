@@ -17,26 +17,26 @@
 - model: core.role
   pk: 1
   fields:
-    name: contributor
+    name: Contributor
     permissions: [1, 2]
 - model: core.role
   pk: 2
   fields:
-    name: owner
+    name: Owner
     permissions: [1, 2, 3, 4]
-- model: core.project_type
+- model: core.projectType
   pk: 1
   fields:
-    name: backend
-- model: core.project_type
+    name: Backend
+- model: core.projectType
   pk: 2
   fields:
-    name: frontend
-- model: core.project_type
+    name: Frontend
+- model: core.projectType
   pk: 3
   fields:
     name: IOS
-- model: core.project_type
+- model: core.projectType
   pk: 4
   fields:
-    name: android
+    name: Android

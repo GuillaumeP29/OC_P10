@@ -26,8 +26,8 @@ class LoginPage(View):
         form = self.form_class()
         message = ''
         return render(
-            request,
-            self.template_name,
+            request=request,
+            template_name=self.template_name,
             context={'form': form, 'message': message}
         )
 
