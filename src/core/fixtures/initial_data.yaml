@@ -1,25 +1,25 @@
-- model: core.permission
+- model: contributors.permission
   pk: 1
   fields:
     name: Read
-- model: core.permission
+- model: contributors.permission
   pk: 2
   fields:
     name: Write
-- model: core.permission
+- model: contributors.permission
   pk: 3
   fields:
     name: Delete
-- model: core.permission
+- model: contributors.permission
   pk: 4
   fields:
     name: Update
-- model: core.role
+- model: contributors.role
   pk: 1
   fields:
     name: Contributor
     permissions: [1, 2]
-- model: core.role
+- model: contributors.role
   pk: 2
   fields:
     name: Owner

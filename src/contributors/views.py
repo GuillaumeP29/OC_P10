@@ -1,17 +1,22 @@
-from django.shortcuts import render
-from rest_framework.viewsets import ModelViewSet
-from contributors.serializers import ContributorListSerializer, ContributorDetailSerializer
-from contributors.models import Contributor
+from rest_framework.viewsets import ReadOnlyModelViewSet
+from contributors.serializers import PermissionSerializer, RoleSerializer
+from contributors.models import Permission, Role
+from core.permissions import IsAdminAuthenticated
 
-# Create your views here.
-class ContributorViewSet(ModelViewSet):
-    serializer_class = ContributorListSerializer
-    detail_serializer_class = ContributorDetailSerializer
+
+class PermissionViewSet(ReadOnlyModelViewSet):
+    serializer_class = PermissionSerializer
+
+    permission_classes = [IsAdminAuthenticated, ]
 
     def get_queryset(self):
-        return Contributor.objects.all()
-    
-    def get_serializer_class(self):
-        if self.action == 'retrieve':
-            return self.detail_serializer_class
-        return super().get_serializer_class()
+        return Permission.objects.all()
+
+
+class RoleViewSet(ReadOnlyModelViewSet):
+    serializer_class = RoleSerializer
+
+    permission_classes = [IsAdminAuthenticated, ]
+
+    def get_queryset(self):
+        return Role.objects.all()

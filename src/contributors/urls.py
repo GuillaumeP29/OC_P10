@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.ContributorViewSet.as_view({'get': 'list'}), name='project_contributors'),
-    path('<int:contributor_id>/', views.ContributorViewSet.as_view({'get': 'list'}), name='delete_contributor'),
+    path('permissions/', views.PermissionViewSet.as_view({'get': 'list'}), name='permissions'),
+    path('roles/', views.RoleViewSet.as_view({'get': 'list'}), name='roles'),
 ]

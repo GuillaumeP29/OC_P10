@@ -1,3 +1,0 @@
-Voirs ressources
-JWT
-Postman
